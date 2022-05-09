@@ -1,0 +1,81 @@
+<h1>Template - Básicos</h1>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="gravar()" #form="ngForm" autocomplete="off">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Produto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            minlength="3"
+            [ngModel]="initForm.produto"
+            name="produto"
+            required
+            class="form-control"
+            placeholder="Produto"
+          />
+          <span *ngIf="!productIsValid()" class="form-text text-danger">
+            o nome do produto precisa de min 3 caracteres</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Preço</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            [ngModel]="initForm.preco"
+            name="preco"
+            required
+            class="form-control"
+            placeholder="Preço"
+          />
+          <span *ngIf="!precoIsValid()" class="form-text text-danger">
+            o preço do produto precisa ser maior 0</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Estoque</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            [ngModel]="initForm.estoque"
+            name="estoque"
+            required
+            customMin
+            [minimo]="0"
+            class="form-control"
+            placeholder="Estoque"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            [disabled]="form.invalid"
+            class="btn btn-primary float-end"
+          >
+            Gravar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre> {{ form.valid | json }} </pre>
+
+    <span>Value</span>
+    <pre> {{ form.value | json }} </pre>
+  </div>
+</div>

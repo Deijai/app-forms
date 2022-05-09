@@ -1,0 +1,78 @@
+<h1>Reactive - Dinamicos</h1>
+<hr />
+
+<div class="row">
+  <div class="col col-sm-12">
+    <form [formGroup]="form" (ngSubmit)="gravar()">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nome</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nome"
+            placeholder="Nome"
+          />
+          <span *ngIf="campoIsValid('nome')" class="form-text text-danger">
+            deve ser 3 letras</span
+          >
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          [formControl]="novoJogo"
+          (keyup.enter)="add()"
+          placeholder="Adicionar Jogo"
+        />
+        <button class="btn btn-outline-primary"   [disabled]="novoJogo.invalid" (click)="add()" type="button">
+          Adicionar
+        </button>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9" formArrayName="favoritos">
+          <div
+            class="input-group mb-1"
+            *ngFor="
+              let favorito of favoritoArr.controls; let i = index;"
+          >
+            <input type="text" [formControlName]="i" class="form-control mb-2" />
+            <button class="btn btn-danger" (click)="remove( i )" type="button">
+              Remover
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-12">
+          <button
+            type="button"
+            [disabled]="form.invalid"
+            class="btn btn-primary float-end"
+            (click)="gravar()"
+          >
+            Gravar
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <pre>é válido? {{ form.valid | json }}</pre>
+        <pre>Form:  {{ form.value | json }}</pre>
+        <hr />
+        <span>Pessoa</span>
+        <pre> {{ "" | json }} </pre>
+
+        <span>Novo Jogo</span>
+        <pre> {{ novoJogo.valid | json }} </pre>
+
+
+      </div>
+    </form>
+  </div>
+</div>

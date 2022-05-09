@@ -1,0 +1,68 @@
+<h1>Template: Switches</h1>
+<hr>
+
+<form #form="ngForm">
+  <!---- radios --->
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Genero</label>
+        <div class="col-sm-9">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" required name="genero" [(ngModel)]="pessoa.genero" value="M">
+            <label class="form-check-label">
+              Masculino
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" required name="genero" [(ngModel)]="pessoa.genero" value="F">
+            <label class="form-check-label">
+              Feminino
+            </label>
+          </div>
+        </div>
+    </div>
+
+    <!---- switches --->
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Notificações</label>
+        <div class="col-sm-9">
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" required [(ngModel)]="pessoa.notificacao" name="notificacao" type="checkbox" role="switch">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Receber notificações</label>
+          </div>
+
+        </div>
+    </div>
+
+     <!---- checkbox --->
+     <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Condições</label>
+        <div class="col-sm-9">
+
+          <div class="form-check">
+            <input class="form-check-input" required name="condicao" [(ngModel)]="pessoa.condicao" type="checkbox">
+            <label class="form-check-label">
+                Condições
+            </label>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button [disabled]="form.invalid" class="btn btn-primary float-end">Gravar</button>
+      </div>
+    </div>
+
+</form>
+
+<h5>Valores</h5>
+<pre> {{ form.value | json }} </pre>
+
+<h5>Válido? </h5>
+<pre> {{ form.valid | json }} </pre>
+
+<h5>Condições</h5>
+
+

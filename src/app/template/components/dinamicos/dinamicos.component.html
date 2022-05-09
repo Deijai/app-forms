@@ -1,0 +1,83 @@
+<h1>Template - Dinamicos</h1>
+<hr />
+
+<div class="row">
+  <div class="col col-sm-12">
+    <form (ngSubmit)="gravar()" #form="ngForm">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nome</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nome"
+            [ngModel]="pessoa.nome"
+            name="nome"
+            min="3"
+            required
+          />
+          <span *ngIf="validateNome()" class="form-text text-danger">
+            deve ser 3 letras</span
+          >
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          name="novoJogo"
+          (keyup.enter)="addJogo()"
+          [(ngModel)]="novoJogo"
+          placeholder="Adicionar Jogo"
+          required
+        />
+        <button
+          class="btn btn-outline-primary"
+          [disabled]="form.invalid"
+          (click)="addJogo()"
+          type="button"
+        >
+          Adicionar
+        </button>
+      </div>
+
+      <div
+        class="input-group mb-3"
+        *ngFor="let item of pessoa.favoritos; let i = index"
+      >
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <input
+          type="text"
+          [(ngModel)]="item.nome"
+          name="favorito_{{ i }}"
+          class="form-control mb-2"
+          required
+        />
+        <button class="btn btn-danger" (click)="deleteInput(i)" type="button">
+          Remover
+        </button>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-12">
+          <button
+            type="button"
+            [disabled]="form.invalid"
+            class="btn btn-primary float-end"
+            (click)="gravar()"
+          >
+            Gravar
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <span>é válido? {{ form.valid | json }}</span>
+        <hr />
+        <span>Pessoa</span>
+        <pre> {{ pessoa | json }} </pre>
+      </div>
+    </form>
+  </div>
+</div>

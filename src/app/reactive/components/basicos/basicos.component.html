@@ -1,0 +1,71 @@
+<h1>Reactive - Básicos</h1>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="gravar()">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Produto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Produto"
+            formControlName="nome"
+          />
+          <span *ngIf="campoIsValid( 'nome' )" class="form-text text-danger">
+            o nome do produto precisa de min 3 caracteres</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Preço</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Preço"
+            formControlName="preco"
+          />
+          <span *ngIf="campoIsValid( 'preco' )" class="form-text text-danger">
+            o preço do produto precisa ser maior 0</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Estoque</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Estoque"
+            formControlName="estoque"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button [disabled]="form.invalid"
+            type="submit"
+            class="btn btn-primary float-end"
+          >
+            Gravar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre> {{  form.valid  | json }} </pre>
+
+    <span>Value</span>
+    <pre> {{ form.value | json }} </pre>
+  </div>
+</div>
