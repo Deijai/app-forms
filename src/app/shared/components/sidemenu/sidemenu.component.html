@@ -27,4 +27,18 @@
     {{ menu.text }}
   </li>
 </ul>
+<div class="mt-3"></div>
+<h2>Validações</h2>
+<hr />
+
+<ul class="list-group">
+  <li
+    *ngFor="let menu of menuAuth"
+    class="list-group-item"
+    [routerLink]="[menu.route]"
+    routerLinkActive="active"
+  >
+    {{ menu.text }}
+  </li>
+</ul>
 
